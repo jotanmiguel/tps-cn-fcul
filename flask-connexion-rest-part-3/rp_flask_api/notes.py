@@ -1,7 +1,10 @@
 from config import db
 from flask import abort, make_response
-from models import Note, Person, note_schema
+from models import Note, Person, note_schema, notes_schema
 
+def read_all():
+    notes = Note.query.all()
+    return notes_schema.dump(notes)
 
 def read_one(note_id):
     note = Note.query.get(note_id)
